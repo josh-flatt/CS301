@@ -28,5 +28,5 @@ def check_tiles_against_word(tiles = list, word = str):
             return False
     return True
 
-test = list("w", "r", "d", "o")
+test = ["w", "r", "v", "o"]
 print(check_tiles_against_word(test, "word"))
