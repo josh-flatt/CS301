@@ -61,7 +61,9 @@ def make_words_using_all_tiles(tiles: list) -> set:
     english_words = get_english_words()
     solutions = set()
     for word in english_words:
-        if is_word_creatable(tiles, word) and len(word) == len(tiles):
+        if len(word) != len(tiles):
+            continue
+        if is_word_creatable(tiles, word):
             solutions.add(word)
     return solutions
 
