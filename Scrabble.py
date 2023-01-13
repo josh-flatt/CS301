@@ -45,7 +45,7 @@ print(check_tiles_against_word(test, "word"))
 # Question 4
 def make_words_with_tiles(tiles: list) -> set:
     english_words = get_english_words()
-    solutions = []
+    solutions = set()
     for word in english_words:
         if check_tiles_against_word(tiles, word):
             solutions.add(word)
