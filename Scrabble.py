@@ -53,7 +53,7 @@ def is_word_creatable(tiles: list, word: str) -> bool:
 
 
 # Question 4
-def make_words_with_tiles(tiles: list) -> set:
+def make_words_using_all_tiles(tiles: list) -> set:
     """
     Returns set with all possible english words that can be created
     using all of the tiles that are passed.
@@ -65,6 +65,4 @@ def make_words_with_tiles(tiles: list) -> set:
             solutions.add(word)
     return solutions
 
-newtest = ["r", "e", "t", "a", "i", "n", "s"]
-print(make_words_with_tiles(newtest))
-# print(check_tiles_against_word(newtest, "retina"))
+print(make_words_using_all_tiles(["r", "e", "t", "a", "i", "n", "s"]))
