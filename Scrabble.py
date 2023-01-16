@@ -23,7 +23,6 @@ def get_english_words(filtering_letter: chr = None) -> list:
     return english_dictionary
         
 
-
 # Question 1
 def sum_of_n_positive_ints(n: int) -> int:
     sum = 0
@@ -175,5 +174,4 @@ def bingo():
         if len(word) == tile_count_for_bingo:
            applicable_words.append(word)
     return applicable_words
-
-print(bingo())
+# Unfinished - only filters down to the words of length 8
