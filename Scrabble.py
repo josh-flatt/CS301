@@ -59,12 +59,12 @@ def is_word_creatable(tiles: list, word: str) -> bool:
     for letter in word:
         if letter in temp_tiles:
             temp_tiles.remove(letter)
-        elif letter not in temp_tiles:
+        else:
             return False
     return True
 
 # test = ["w", "r", "d", "o"]
-# print(check_tiles_against_word(test, "word"))
+# print(is_word_creatable(test, "word"))
 
 
 # Question 4
