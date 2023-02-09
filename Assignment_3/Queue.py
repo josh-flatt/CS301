@@ -1,21 +1,20 @@
-class Stack:
+from Stack import Stack
+
+class Queue:
     def __init__(self):
         self.items = []
-    
+        
     def __str__(self):
         return str(self.items)
     
-    def push(self, item) -> None:
+    def enqueue(self, item):
         self.items.append(item)
     
-    def pop(self):
-        return self.items.pop()
+    def dequeue(self):
+        return self.items.pop(0)
     
-    def peek(self):
-        return self.items[:-1]
-    
-    def isEmpty(self) -> bool:
+    def isEmpty(self):
         return self.items == []
-
+    
     def size(self):
         return len(self.items)
