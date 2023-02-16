@@ -77,16 +77,42 @@ class Linked_List():
         return index
         
     def insert(self, position, item):
-        if(position > self.size()):
+        if(position > self.size() or position < 0):
+            raise IndexError()
+        newNode = Node(item)
+        currNode = self.head_node
+        index = 0
+        prevNode = self.head_node
+        while(position != index):
+            prevNode = currNode
+            currNode = currNode.get_next()
+            index += 1
+        if(position != 0):
+            prevNode.set_next(newNode)
+            newNode.set_next(currNode)
+        if(position == 0):
+            newNode.set_next(currNode)
+            self.head_node = newNode
+            
+    def pop(self, position = None):
+        if(position == None):
+            position = self.size() - 1
+        if(position > self.size() or position < 0):
             raise IndexError()
         currNode = self.head_node
         index = 0
         prevNode = self.head_node
-        while(position > index):
-            pass
-    
-    def pop(self, position = size() - 1):
-        pass
+        while(position != index):
+            prevNode = currNode
+            currNode = currNode.get_next()
+            index += 1
+        if(position != 0):
+            prevNode.set_next(newNode)
+            newNode.set_next(currNode)
+        if(position == 0):
+            newNode.set_next(currNode)
+            self.head_node = newNode
+        
 
 if(__name__ == "__main__"):
     n = Linked_List()
@@ -110,3 +136,6 @@ if(__name__ == "__main__"):
     print(n)
     print(f"size: {n.size()}")
     print(f"index of new: {n.index('new')}")
+    n.insert(0, "ins")
+    print(n)
+    print(f"size: {n.size()}")
