@@ -5,7 +5,7 @@ class Doubly_Linked_List(Linked_List):
     def __init__(self):
         self.headNode = None
         self.tailNode = None
-        self.linlen = 0
+        self.dllLength = 0
     
     def __str__(self):
         output = ""
@@ -17,26 +17,27 @@ class Doubly_Linked_List(Linked_List):
 
     def add(self, item):
         newNode = Node(item)
-        if self.headNode == None:
+        # if self.headNode == None:
+        if self.dllLength == 0:
             self.headNode = newNode
-            self.linlen += 1
+            self.dllLength += 1
             return
         nextNode = self.headNode
         self.headNode = newNode
         newNode.set_next(nextNode)
-        self.linlen += 1
+        self.dllLength += 1
 
     def remove(self, item):
         currNode = self.headNode
         prevNode = self.headNode
         if self.headNode.get_value() == item:
             self.headNode = self.headNode.get_next()
-            self.linlen += -1
+            self.dllLength += -1
             return
         while currNode != None:
             if currNode.get_value() == item:
                 prevNode.set_next(currNode.get_next())
-                self.linlen += -1
+                self.dllLength += -1
                 return
             prevNode = currNode
             currNode = currNode.get_next()
@@ -56,7 +57,7 @@ class Doubly_Linked_List(Linked_List):
         return False
 
     def size(self):
-        return self.linlen
+        return self.dllLength
         # currNode = self.headNode
         # size = 0
         # while currNode != None:
@@ -68,13 +69,13 @@ class Doubly_Linked_List(Linked_List):
         new_node = Node(item)
         if self.headNode == None:
             self.headNode = new_node
-            self.linlen += 1
+            self.dllLength += 1
             return
         currNode = self.headNode
         while currNode.get_next() != None:
             currNode = currNode.get_next()
         currNode.set_next(new_node)
-        self.linlen += 1
+        self.dllLength += 1
 
     def index(self, item):
         if not self.search(item):
@@ -103,7 +104,7 @@ class Doubly_Linked_List(Linked_List):
         if position == 0:
             newNode.set_next(currNode)
             self.headNode = newNode
-        self.linlen += 1
+        self.dllLength += 1
 
     def pop(self, position=None):
         if position == None:
@@ -119,11 +120,11 @@ class Doubly_Linked_List(Linked_List):
             index += 1
         if position != 0:
             prevNode.set_next(currNode.get_next())
-            self.linlen += -1
+            self.dllLength += -1
             return currNode.get_value()
         if position == 0:
             self.headNode = currNode.get_next()
-            self.linlen += -1
+            self.dllLength += -1
             return currNode.get_value()
 
 
