@@ -17,14 +17,22 @@ class Doubly_Linked_List(Linked_List):
 
     def add(self, item):
         newNode = Node(item)
-        # if self.headNode == None:
+        if self.dllLength == 1:
+            tmp = self.headNode
+            self.headNode = newNode
+            self.tailNode = tmp
+            self.headNode.set_next(self.tailNode)
+            self.tailNode.set_prev(self.headNode)
+            self.dllLength += 1
+            return
         if self.dllLength == 0:
             self.headNode = newNode
             self.dllLength += 1
             return
-        nextNode = self.headNode
+        tmp = self.headNode
         self.headNode = newNode
-        newNode.set_next(nextNode)
+        self.headNode.set_next(tmp)
+        tmp.set_prev(self.headNode)
         self.dllLength += 1
 
     def remove(self, item):
@@ -36,7 +44,10 @@ class Doubly_Linked_List(Linked_List):
             return
         while currNode != None:
             if currNode.get_value() == item:
-                prevNode.set_next(currNode.get_next())
+                nextNode = currNode.get_next()
+                prevNode.set_next(nextNode)
+                if nextNode != None:
+                    nextNode.set_prev(prevNode)
                 self.dllLength += -1
                 return
             prevNode = currNode
