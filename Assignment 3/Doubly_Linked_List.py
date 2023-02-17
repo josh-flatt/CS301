@@ -9,9 +9,11 @@ class Doubly_Linked_List(Linked_List):
     def __str__(self):
         output = ""
         currNode = self.headNode
-        while currNode != None:
+        while currNode != self.tailNode:
             output += f"{currNode.get_value()}, "
             currNode = currNode.get_next()
+        if currNode == self.tailNode:
+            output += f"{currNode.get_value()}"
         return f"[{output[:-2]}]"
 
     def add(self, item):
