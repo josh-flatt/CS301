@@ -40,6 +40,7 @@ class Doubly_Linked_List(Linked_List):
         prevNode = self.headNode
         if self.headNode.get_value() == item:
             self.headNode = self.headNode.get_next()
+            self.headNode.set_prev(None)
             self.dllLength += -1
             return
         while currNode != None:
@@ -78,14 +79,20 @@ class Doubly_Linked_List(Linked_List):
 
     def append(self, item):
         new_node = Node(item)
-        if self.headNode == None:
+        if self.dllLength == 0:
             self.headNode = new_node
             self.dllLength += 1
             return
         currNode = self.headNode
-        while currNode.get_next() != None:
-            currNode = currNode.get_next()
-        currNode.set_next(new_node)
+        if self.dllLength == 1:
+            self.tailNode = new_node
+            self.headNode.set_next(self.tailNode)
+            self.tailNode.set_prev(self.headNode)
+            self.dllLength += 1
+            return
+        old_tail = self.tailNode
+        old_tail.set_next(new_node)
+        self.tailNode = new_node
         self.dllLength += 1
 
     def index(self, item):
@@ -112,8 +119,11 @@ class Doubly_Linked_List(Linked_List):
         if position != 0:
             prevNode.set_next(newNode)
             newNode.set_next(currNode)
+            newNode.set_prev(prevNode)
+            currNode.set_prev(newNode)
         if position == 0:
             newNode.set_next(currNode)
+            currNode.set_prev(newNode)
             self.headNode = newNode
         self.dllLength += 1
 
@@ -130,46 +140,48 @@ class Doubly_Linked_List(Linked_List):
             currNode = currNode.get_next()
             index += 1
         if position != 0:
-            prevNode.set_next(currNode.get_next())
+            nextNode = currNode.get_next()
+            prevNode.set_next(nextNode)
             self.dllLength += -1
             return currNode.get_value()
         if position == 0:
             self.headNode = currNode.get_next()
+            self.headNode.set_prev(None)
             self.dllLength += -1
             return currNode.get_value()
 
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
     
-    ########## Testing ###########
+#     ########## Testing ###########
     
-    dll = Doubly_Linked_List()
-    dll.add(5)
-    print(dll)
-    print(f"size: {dll.size()}")
-    dll.add("test")
-    print(dll)
-    print(f"size: {dll.size()}")
-    dll.remove("test")
-    print(dll)
-    print(f"size: {dll.size()}")
-    dll.add("new")
-    print(dll)
-    print(f"size: {dll.size()}")
-    dll.remove(5)
-    print(dll)
-    print(f"size: {dll.size()}")
-    print(f"index of new: {dll.index('new')}")
-    dll.add("first")
-    print(dll)
-    print(f"size: {dll.size()}")
-    print(f"index of new: {dll.index('new')}")
-    dll.insert(0, "ins")
-    print(dll)
-    print(f"size: {dll.size()}")
-    print(f'Popped "{dll.pop()}"')
-    print(dll)
-    print(f"size: {dll.size()}")
-    print(f'Popped "{dll.pop(0)}"')
-    print(dll)
-    print(f"size: {dll.size()}")
+#     dll = Doubly_Linked_List()
+#     dll.add(5)
+#     print(dll)
+#     print(f"size: {dll.size()}")
+#     dll.add("test")
+#     print(dll)
+#     print(f"size: {dll.size()}")
+#     dll.remove("test")
+#     print(dll)
+#     print(f"size: {dll.size()}")
+#     dll.add("new")
+#     print(dll)
+#     print(f"size: {dll.size()}")
+#     dll.remove(5)
+#     print(dll)
+#     print(f"size: {dll.size()}")
+#     print(f"index of new: {dll.index('new')}")
+#     dll.add("first")
+#     print(dll)
+#     print(f"size: {dll.size()}")
+#     print(f"index of new: {dll.index('new')}")
+#     dll.insert(0, "ins")
+#     print(dll)
+#     print(f"size: {dll.size()}")
+#     print(f'Popped "{dll.pop()}"')
+#     print(dll)
+#     print(f"size: {dll.size()}")
+#     print(f'Popped "{dll.pop(0)}"')
+#     print(dll)
+#     print(f"size: {dll.size()}")
